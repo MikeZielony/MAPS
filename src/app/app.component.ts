@@ -21,12 +21,12 @@ export class AppComponent implements OnInit {
   };
 
   ngOnInit() {
-    this.map = L.map('map').setView([50.048751, 19.9607416], 22);
+    this.map = L.map('map').setView([50.048751, 19.9607416], 16);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution:
         '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
-
+    L.marker([50.048751, 19.9607416], this.markerIcon).addTo(this.map);
     this.map.on('click', e => {
       console.log(e.latlng); // get the coordinates
       L.marker([e.latlng.lat, e.latlng.lng], this.markerIcon).addTo(this.map); // add the marker onclick
