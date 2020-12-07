@@ -21,7 +21,17 @@ export class AppComponent implements OnInit {
   };
 
   ngOnInit() {
-    this.map = L.map('map').setView([50.048751, 19.9607416], 16);
+    if (!navigator.geolocation) {
+      console.log('location is not supported');
+    }
+    navigator.geolocation.getCurrentPosition((position) => {
+      const coords = position.coords;
+      const latLong = [coords.latitude, coords.longitude];
+      console.log(
+          `lat: ${position.coords.latitude}, lon: ${position.coords.longitude}`
+      );
+
+    this.map = L.map('map').setView(latLong, 19);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution:
         '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -31,5 +41,5 @@ export class AppComponent implements OnInit {
       console.log(e.latlng); // get the coordinates
       L.marker([e.latlng.lat, e.latlng.lng], this.markerIcon).addTo(this.map); // add the marker onclick
     });
-  }
+  })}
 }
