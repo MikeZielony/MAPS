@@ -36,7 +36,8 @@ export class AppComponent implements OnInit {
       attribution:
         '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
-    L.marker([latLong[0], latLong[1]], this.markerIcon).addTo(this.map);
+    L.marker([latLong[0], latLong[1]], this.markerIcon).addTo(this.map).addGroup;
+
     this.map.on('click', e => {
       console.log(e.latlng); // get the coordinates
       L.marker([e.latlng.lat, e.latlng.lng], this.markerIcon).addTo(this.map); // add the marker onclick
