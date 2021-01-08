@@ -2,9 +2,10 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 
 import { AppComponent } from "./app.component";
+import { FirebaseComponent } from './firebase/firebase.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, FirebaseComponent],
   imports: [BrowserModule],
   providers: [],
   bootstrap: [AppComponent]
