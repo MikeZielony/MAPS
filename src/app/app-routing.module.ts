@@ -1,8 +1,7 @@
 import {Component, NgModule} from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-let routes: Routes;
-routes = [{
+const routes: Routes = [{
   path: 'map',
   loadChildren: () => import('./map/map.module').then(m => m.MapModule)
 },
