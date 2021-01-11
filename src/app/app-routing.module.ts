@@ -1,13 +1,8 @@
 import {Component, NgModule} from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-@Component({
-  selector: 'app-map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss']
-})
-
-const routes: Routes = [{
+let routes: Routes;
+routes = [{
   path: 'map',
   loadChildren: () => import('./map/map.module').then(m => m.MapModule)
 },
