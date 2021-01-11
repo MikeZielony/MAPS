@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import {MapDataService} from './services/map-data.service';
+import {MapResultModel} from './models/mapResult.model';
+import {take} from 'rxjs/operators';
 
 @Component({
   selector: 'app-map',
@@ -8,6 +11,11 @@ import 'leaflet/dist/leaflet.css';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
+
+  public mapResults: MapResultModel[] = [];
+
+  constructor(private mapDataService: MapDataService) {
+  }
 
   map;
   markerIcon = {
@@ -21,7 +29,15 @@ export class MapComponent implements OnInit {
     })
   };
 
-  ngOnInit() {
+  ngOnInit(): void {
+
+    this.mapDataService.getMapResult()
+        .pipe(
+            take(1)
+        )
+        .subscribe(results => this.mapResults = results);
+
+
     if (!navigator.geolocation) {
       console.log('location is not supported');
     }
@@ -43,5 +59,5 @@ export class MapComponent implements OnInit {
         console.log(e.latlng); // get the coordinates
         L.marker([e.latlng.lat, e.latlng.lng], this.markerIcon).addTo(this.map); // add the marker onclick
       });
-    })}
+    }); }
 }

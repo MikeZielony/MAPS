@@ -1,1 +1,9 @@
+<div>
+    <div *ngFor="let mapResult of mapResults">
+        <div style="font-weight: bold">Name : {{mapResult.name}}</div>
+        <div style="font-weight: bold">Type :{{mapResult.type | mapResultType}}</div>
+        <div style="font-weight: bold">Long :{{mapResult.geometry.coordinates[0]}}</div>
+        <div style="font-weight: bold">Latt :{{mapResult.geometry.coordinates[1]}}</div>
+    </div>
+</div>
 <div id="map" style="height: 100vh"></div>

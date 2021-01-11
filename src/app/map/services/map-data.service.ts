@@ -17,6 +17,7 @@ export class MapDataService {
   }
 
   public getMapResult(): Observable<MapResultModel[]> {
+    console.log('Works');
     return this.http.get<IMapResultDto[]>(`${environment.apiUrl}/assets/mock_api/mapResults.json`)
         .pipe(
             map(results => results.map(result => new MapResultModel(result)))
